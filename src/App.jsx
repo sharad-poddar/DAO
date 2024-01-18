@@ -16,6 +16,7 @@ export default function App(){
   // getting contract
   const {contract: NFTpass} = useContract('0x15ed17d7Bc0C4Fc80643EcFB037276f5Eb00aac8', 'edition-drop');
   const {contract: token} = useContract('0x0668fee0cCf3CC9593C1468056997ABd75d89012', 'token');
+  const {data: nft} = useNFT(NFTpass, "0");
 
   // getting the balance of NFT
   const {data: NFTbalance} = useNFTBalance(
@@ -109,10 +110,10 @@ export default function App(){
                 )
               })}
             </tbody>
-          </table>
-
+          </table>        
         </div>
-        
+        <h3>NFT of the community</h3>
+        {nft && nft.metadata && <ThirdwebNftMedia metadata={nft.metadata} className='nft-image'/>}   
       </div>
     </div>
   )
